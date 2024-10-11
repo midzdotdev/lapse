@@ -21,6 +21,12 @@ export const useDurationObject = (
     [now, sinceTimestamp]
   );
 
+  // For the love of God...
+  // Somebody please tell me why sinceTimestamp is sometimes 2 days into the future
+  if (sinceTimestamp && sinceTimestamp > now) {
+    return null;
+  }
+
   return durationObject;
 };
 
@@ -32,6 +38,9 @@ const DURATION_UNIT_VALUES: Record<keyof DurationObject, number> = (() => {
 
   return { days, hours, minutes, seconds };
 })();
+
+export type Unit = keyof typeof DURATION_UNIT_VALUES;
+export const unitsDesc = Object.keys(DURATION_UNIT_VALUES) as Unit[];
 
 const parseDurationObject = (durationMillis: number): DurationObject => {
   const durationObject: DurationObject = {} as DurationObject;

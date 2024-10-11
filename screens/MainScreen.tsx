@@ -1,14 +1,15 @@
-import { AppState, StyleSheet, View } from "react-native";
+import { AppState, View } from "react-native";
 import { DurationTicker } from "../components/DurationTicker";
 import { useEffect } from "react";
 import { useDurationObject } from "../hooks/useDurationObject";
 import { useLastUsedStorage } from "../hooks/useLastUsedStorage";
-import { createStyles } from "../theme";
+import { themedStylesHook } from "../theme";
 
 export const MainScreen = () => {
-  const [lastUsed, reset] = useLastUsedStorage();
-  const interval = useDurationObject(lastUsed);
   const styles = useStyles();
+
+  const [lastUsed, reset] = useLastUsedStorage();
+  const durationObject = useDurationObject(lastUsed);
 
   useEffect(() => {
     const subscription = AppState.addEventListener("change", (state) => {
@@ -22,18 +23,18 @@ export const MainScreen = () => {
     };
   }, [reset]);
 
-  if (interval === null) {
+  if (durationObject === null) {
     return null;
   }
 
   return (
     <View style={styles.container}>
-      <DurationTicker duration={interval} />
+      <DurationTicker duration={durationObject} />
     </View>
   );
 };
 
-const useStyles = createStyles((theme) => ({
+const useStyles = themedStylesHook((theme) => ({
   container: {
     flex: 1,
     alignItems: "center",

@@ -5,8 +5,6 @@ import React, {
   useMemo,
 } from "react";
 import {
-  Appearance,
-  AppState,
   ColorSchemeName,
   ImageStyle,
   StyleSheet,
@@ -64,7 +62,7 @@ export const ThemeProvider = ({ children }: PropsWithChildren) => {
 
 export const useTheme = () => useContext(ThemeContext);
 
-export const createStyles =
+export const themedStylesHook =
   <T extends { [P in keyof T]: ViewStyle | TextStyle | ImageStyle }>(
     makeStyles: (theme: Theme) => T
   ): (() => T) =>

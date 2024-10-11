@@ -1,78 +1,136 @@
-import React, { useEffect } from "react";
-import { Text, StyleSheet } from "react-native";
+import React, { ComponentProps, useEffect, useState } from "react";
+import { Text, StyleSheet, View } from "react-native";
 import Animated, {
-  AnimationCallback,
+  clamp,
   Easing,
-  FadeIn,
-  LinearTransition,
   useAnimatedStyle,
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
-
-const DIGIT_ARRAY = Array.from({ length: 10 }).fill(null);
+import { TICKER_ANIMATION_DURATION } from "../constants";
 
 export const RollingDigit = ({
   digit,
+  ...transitioningDigitProps
+}: {
+  digit: number | null;
+} & Omit<ComponentProps<typeof TransitioningDigit>, "to" | "from">) => {
+  const [{ from, to }, setActive] = useState<
+    Pick<ComponentProps<typeof TransitioningDigit>, "to" | "from">
+  >({
+    from: null,
+    to: digit,
+  });
+
+  useEffect(() => {
+    if (to === digit) return;
+
+    setActive({ from: to, to: digit });
+  }, [digit]);
+
+  return (
+    <TransitioningDigit
+      key={`${from}->${to}`}
+      from={from}
+      to={to}
+      {...transitioningDigitProps}
+    />
+  );
+};
+
+export const TransitioningDigit = ({
+  from,
+  to,
   height,
   textStyle,
   containerStyle,
 }: {
-  digit: number;
+  from: number | null;
+  to: number | null;
   height: number;
-  animationCallback?: AnimationCallback;
+  containerStyle?: React.ComponentProps<typeof View>["style"];
   textStyle?: React.ComponentProps<typeof Text>["style"];
-  containerStyle?: React.ComponentProps<typeof Animated.View>["style"];
 }) => {
-  const animatedValue = useSharedValue(digit);
-  const animatedStyle = useAnimatedStyle(
-    () => ({
-      transform: [{ translateY: (animatedValue.value || 0) * height }],
-    }),
-    [height]
-  );
+  const transitionProgress = useSharedValue(0);
 
   useEffect(() => {
-    animatedValue.value = withTiming(-digit, {
-      duration: 600,
+    transitionProgress.value = withTiming(1, {
+      duration: TICKER_ANIMATION_DURATION,
       easing: Easing.elastic(1),
     });
-  }, [digit]);
+  }, []);
+
+  const viewShiftStyle = useAnimatedStyle(() => ({
+    transform: [
+      {
+        translateY: -transitionProgress.value * height,
+      },
+    ],
+  }));
+
+  const fromTextFadeOutStyle = useAnimatedStyle(() => ({
+    opacity: 1 - Easing.ease(clamp(transitionProgress.value, 0, 1)),
+  }));
+
+  const toTextFadeInStyle = useAnimatedStyle(() => ({
+    opacity: Easing.ease(clamp(transitionProgress.value, 0, 1)),
+  }));
 
   return (
-    <Animated.View
-      layout={LinearTransition}
-      entering={FadeIn}
+    <View
       style={[
         { alignItems: "center", justifyContent: "center" },
         containerStyle,
         { overflow: "hidden" },
       ]}
     >
-      <Animated.View style={[styles.digitContainer, animatedStyle]}>
-        {DIGIT_ARRAY.map((_, index) => (
-          <Text
-            key={index}
+      <Animated.View
+        style={[
+          styles.digitContainer,
+          viewShiftStyle,
+          {
+            width: height * 0.6,
+          },
+        ]}
+      >
+        {from !== null ? (
+          <Animated.Text
             style={[
               textStyle,
               {
-                position: index === 0 ? "relative" : "absolute",
-                transform: [{ translateY: (height || 0) * index }],
+                position: "absolute",
               },
+              fromTextFadeOutStyle,
             ]}
           >
-            {index}
-          </Text>
-        ))}
+            {from}
+          </Animated.Text>
+        ) : null}
+        <Animated.Text
+          style={[
+            textStyle,
+            {
+              position: "relative",
+              transform: [
+                {
+                  translateY: height,
+                },
+              ],
+            },
+            toTextFadeInStyle,
+          ]}
+        >
+          {to ?? " "}
+        </Animated.Text>
       </Animated.View>
-    </Animated.View>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   digitContainer: {
-    alignItems: "center",
     overflow: "visible",
+    alignItems: "center",
     justifyContent: "center",
   },
 });

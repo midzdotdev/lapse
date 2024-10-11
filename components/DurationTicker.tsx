@@ -1,66 +1,82 @@
-import { DurationObject } from "../hooks/useDurationObject";
-import { StyleSheet, Text, View } from "react-native";
+import { DurationObject, Unit, unitsDesc } from "../hooks/useDurationObject";
+import { View } from "react-native";
 import { RollingNumber } from "./RollingNumber";
-import { createStyles, useTheme } from "../theme";
+import { themedStylesHook } from "../theme";
+import Animated, { LinearTransition } from "react-native-reanimated";
+import { useMemo } from "react";
+import { WithFade } from "../hoc/WithFade";
 
 export const DurationTicker = ({ duration }: { duration: DurationObject }) => {
-  const theme = useTheme();
   const styles = useStyles();
 
+  const activeUnits = useMemo<Unit[]>(() => {
+    const firstActiveIndex = unitsDesc.findIndex((unit) => duration[unit] > 0);
+    if (firstActiveIndex === -1) {
+      return [];
+    }
+
+    return unitsDesc.slice(firstActiveIndex);
+  }, [duration]);
+
   return (
-    <View style={styles.container}>
+    <Animated.View layout={LinearTransition} style={styles.container}>
       <View style={styles.valuesColumn}>
-        {(["days", "hours", "minutes", "seconds"] as const).map((unit) => (
+        {unitsDesc.map((unit) => (
           <RollingNumber
             key={unit}
-            value={duration[unit]}
-            containerStyle={{
-              alignItems: "flex-end",
-            }}
-            digitContainerStyle={{
-              borderRadius: 8,
-            }}
-            textStyle={{
-              fontSize: 64,
-              fontWeight: "900",
-              color: theme.colors.text,
-            }}
+            value={activeUnits.includes(unit) ? duration[unit] : null}
+            length={3}
+            containerStyle={styles.rollingNumberContainer}
+            textStyle={styles.rollingNumberText}
           />
         ))}
       </View>
       <View style={styles.unitsColumn}>
-        {(["days", "hours", "minutes", "seconds"] as const).map((unit) => (
-          <Text key={unit} style={styles.unitText}>
-            {unit}
-          </Text>
+        {unitsDesc.map((unit) => (
+          <WithFade key={unit} show={activeUnits.includes(unit)}>
+            {(style) => (
+              <Animated.Text style={[styles.unitText, style]}>
+                {unit}
+              </Animated.Text>
+            )}
+          </WithFade>
         ))}
       </View>
-    </View>
+    </Animated.View>
   );
 };
 
-const useStyles = createStyles((theme) => ({
+const useStyles = themedStylesHook((theme) => ({
   container: {
     flexDirection: "row",
-    justifyContent: "center",
-    gap: 16,
+    gap: 20,
+    marginBottom: "50%",
   },
   valuesColumn: {
     flex: 1,
-    alignItems: "flex-end",
     flexDirection: "column",
+    alignItems: "flex-end",
     justifyContent: "space-evenly",
+    gap: 10,
+  },
+  rollingNumberContainer: {
+    alignItems: "flex-end",
+  },
+  rollingNumberText: {
+    fontSize: 72,
+    fontWeight: 900,
+    color: theme.colors.text,
   },
   unitsColumn: {
-    flex: 1,
+    flex: 0.618,
     alignItems: "flex-start",
     justifyContent: "space-evenly",
     flexDirection: "column",
-    gap: 16,
+    gap: 26,
   },
   unitText: {
-    marginTop: 20,
-    fontSize: 24,
+    marginTop: 24,
+    fontSize: 27.5,
     fontWeight: "bold",
     color: theme.colors.text,
   },
