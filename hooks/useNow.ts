@@ -22,7 +22,7 @@ export const useNow = (): number => {
     timeoutId = setTimeout(() => {
       intervalId = setInterval(() => {
         setNow(Date.now());
-      });
+      }, 1000);
 
       // schedule to be aligned with clock
     }, intervalDelay);

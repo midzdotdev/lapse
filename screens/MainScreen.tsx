@@ -2,26 +2,14 @@ import { AppState, View } from "react-native";
 import { DurationTicker } from "../components/DurationTicker";
 import { useEffect } from "react";
 import { useDurationObject } from "../hooks/useDurationObject";
-import { useLastUsedStorage } from "../hooks/useLastUsedStorage";
-import { themedStylesHook } from "../theme";
+import { themedStylesHook } from "../contexts/theme";
+import { useTimestamp } from "../atoms/timestamp";
 
 export const MainScreen = () => {
   const styles = useStyles();
 
-  const [lastUsed, reset] = useLastUsedStorage();
-  const durationObject = useDurationObject(lastUsed);
-
-  useEffect(() => {
-    const subscription = AppState.addEventListener("change", (state) => {
-      if (state !== "background") return;
-
-      reset();
-    });
-
-    return () => {
-      subscription.remove();
-    };
-  }, [reset]);
+  const timestamp = useTimestamp() ?? null;
+  const durationObject = useDurationObject(timestamp);
 
   if (durationObject === null) {
     return null;

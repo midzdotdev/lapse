@@ -1,7 +1,7 @@
 import { DurationObject, Unit, unitsDesc } from "../hooks/useDurationObject";
 import { View } from "react-native";
 import { RollingNumber } from "./RollingNumber";
-import { themedStylesHook } from "../theme";
+import { themedStylesHook } from "../contexts/theme";
 import Animated, { LinearTransition } from "react-native-reanimated";
 import { useMemo } from "react";
 import { WithFade } from "../hoc/WithFade";
