@@ -1,3 +1,5 @@
+![Lapse Logo](logo.svg)
+
 # Lapse
 
 Whether you're a master procrastinator, overly engrossed in a task, or just losing track of time, Lapse is here for you.
