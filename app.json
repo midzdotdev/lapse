@@ -7,7 +7,7 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -15,14 +15,10 @@
       "supportsTablet": true,
       "bundleIdentifier": "dev.midz.lapse"
     },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+    "extra": {
+      "eas": {
+        "projectId": "03ea6164-9370-4884-9a63-49753eda2cb3"
       }
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
     }
   }
 }
