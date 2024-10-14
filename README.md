@@ -1,4 +1,4 @@
-![Lapse Logo](logo.svg)
+<img src="./assets/icon.png" style="height: 100px" />
 
 # Lapse
 
