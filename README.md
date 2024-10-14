@@ -8,6 +8,8 @@ Lapse is an app for iOS and Android to help put time into perspective. It's a si
 
 The app has finished development, and will be live on App Store and Play Store in the near future.
 
+<img src="./assets/recording.gif" style="width: 250px;" />
+
 ## Background
 
 I made this app to level up my React Native and Reanimated understanding, in addition to getting experience with publishing for iOS and Android.
