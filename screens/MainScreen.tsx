@@ -1,9 +1,8 @@
-import { AppState, View } from "react-native";
-import { DurationTicker } from "../components/DurationTicker";
-import { useEffect } from "react";
-import { useDurationObject } from "../hooks/useDurationObject";
-import { themedStylesHook } from "../contexts/theme";
+import { View } from "react-native";
 import { useTimestamp } from "../atoms/timestamp";
+import { DurationTicker } from "../components/DurationTicker";
+import { themedStylesHook } from "../contexts/theme";
+import { useDurationObject } from "../hooks/useDurationObject";
 
 export const MainScreen = () => {
   const styles = useStyles();

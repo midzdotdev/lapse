@@ -1,13 +1,13 @@
 import { ComponentProps, useCallback, useMemo, useState } from "react";
 import { LayoutChangeEvent, StyleSheet, View } from "react-native";
-import { RollingDigit } from "./RollingDigit";
+import { AnimatedDigit } from "./AnimatedDigit/AnimatedDigit";
 
 // Inspired by: https://github.com/BouarourMohammed/react-native-animated-rolling-numbers
 // The main difference is that my solution doesn't require rendering out all possible digits
 // As a result, we can transition a digit from 9 to 0 without cycling back through all intermediate digits
 // And we're left with a seamless continuous infinite roll
 
-export const RollingNumber = ({
+export const AnimatedNumber = ({
   value,
   length,
   containerStyle,
@@ -18,10 +18,10 @@ export const RollingNumber = ({
   value: number | null;
   length: number;
   containerStyle?: React.ComponentProps<typeof View>["style"];
-  textStyle?: React.ComponentProps<typeof RollingDigit>["textStyle"];
+  textStyle?: React.ComponentProps<typeof AnimatedDigit>["textStyle"];
   digitsWrapperStyle?: React.ComponentProps<typeof View>["style"];
   digitContainerStyle?: React.ComponentProps<
-    typeof RollingDigit
+    typeof AnimatedDigit
   >["containerStyle"];
 }) => {
   const [height, setHeight] = useState<number>(0);
@@ -50,7 +50,9 @@ export const RollingNumber = ({
 
   */
 
-  const digits = useMemo<ComponentProps<typeof RollingDigit>["digit"][]>(() => {
+  const digits = useMemo<
+    ComponentProps<typeof AnimatedDigit>["digit"][]
+  >(() => {
     if (value === null) {
       return Array.from({ length }, () => null);
     }
@@ -73,7 +75,7 @@ export const RollingNumber = ({
         onLayout={handleLayout}
       >
         {digits.map((digit, index) => (
-          <RollingDigit
+          <AnimatedDigit
             key={index}
             digit={digit}
             height={height}

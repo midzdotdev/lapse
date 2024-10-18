@@ -1,10 +1,10 @@
-import { DurationObject, Unit, unitsDesc } from "../hooks/useDurationObject";
-import { View } from "react-native";
-import { RollingNumber } from "./RollingNumber";
-import { themedStylesHook } from "../contexts/theme";
-import Animated, { LinearTransition } from "react-native-reanimated";
 import { useMemo } from "react";
+import { View } from "react-native";
+import Animated, { LinearTransition } from "react-native-reanimated";
+import { themedStylesHook } from "../contexts/theme";
 import { WithFade } from "../hoc/WithFade";
+import { DurationObject, Unit, unitsDesc } from "../hooks/useDurationObject";
+import { AnimatedNumber } from "./AnimatedNumber/AnimatedNumber";
 
 export const DurationTicker = ({ duration }: { duration: DurationObject }) => {
   const styles = useStyles();
@@ -22,7 +22,7 @@ export const DurationTicker = ({ duration }: { duration: DurationObject }) => {
     <Animated.View layout={LinearTransition} style={styles.container}>
       <View style={styles.valuesColumn}>
         {unitsDesc.map((unit) => (
-          <RollingNumber
+          <AnimatedNumber
             key={unit}
             value={activeUnits.includes(unit) ? duration[unit] : null}
             length={3}
