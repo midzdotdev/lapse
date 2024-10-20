@@ -8,11 +8,7 @@ import {
 } from "jotai/utils";
 import { useEffect, useMemo, useRef } from "react";
 import { AppState } from "react-native";
-
-const OVERRIDE_TIME_AGO = null;
-// process.env.NODE_ENV === "development"
-//   ? 24 * 60 * 60 * 1000 - 10 * 1000
-//   : null;
+import { DEV_CONSTANTS } from "../constants";
 
 const asyncStorage = createJSONStorage(() => AsyncStorage);
 
@@ -30,9 +26,10 @@ const storedTimestampAtom = atomWithStorage(
 const resetTimestampAtom = atom(null, async (_, set) => {
   console.log("resetting timestamp");
 
-  const newValue = OVERRIDE_TIME_AGO
-    ? Date.now() - OVERRIDE_TIME_AGO
-    : Date.now();
+  const newValue =
+    typeof DEV_CONSTANTS?.timerValue === "number"
+      ? Date.now() - DEV_CONSTANTS?.timerValue
+      : Date.now();
 
   await set(storedTimestampAtom, newValue);
 });
@@ -47,8 +44,8 @@ export const useTimestamp = () => {
   }, [storedValue]);
 
   const value = useMemo(() => {
-    if (OVERRIDE_TIME_AGO) {
-      return Date.now() - OVERRIDE_TIME_AGO;
+    if (typeof DEV_CONSTANTS?.timerValue === "number") {
+      return Date.now() - DEV_CONSTANTS?.timerValue;
     }
 
     return storedValue;

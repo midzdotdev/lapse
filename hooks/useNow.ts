@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useState } from "react";
-import { useInterval } from "./useInterval";
+import { useEffect, useState } from "react";
+import { DEV_CONSTANTS } from "../constants";
 
 // An explanation to why useNow looks so complex...
 // The delay argument for setInterval is the guarenteed minimum delay
@@ -12,6 +12,10 @@ export const useNow = (): number => {
   const [now, setNow] = useState<number>(Date.now());
 
   useEffect(() => {
+    if (DEV_CONSTANTS?.isTimerStatic) {
+      return;
+    }
+
     let timeoutId: ReturnType<typeof setTimeout>;
     let intervalId: ReturnType<typeof setInterval>;
 
