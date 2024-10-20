@@ -1,9 +1,10 @@
 import { useMemo } from "react";
 import { View } from "react-native";
 import Animated, { LinearTransition } from "react-native-reanimated";
+import { Unit, unitsDesc } from "../constants";
 import { themedStylesHook } from "../contexts/theme";
 import { WithFade } from "../hoc/WithFade";
-import { DurationObject, Unit, unitsDesc } from "../hooks/useDurationObject";
+import { DurationObject } from "../hooks/useDurationObject";
 import { AnimatedNumber } from "./AnimatedNumber/AnimatedNumber";
 
 export const DurationTicker = ({ duration }: { duration: DurationObject }) => {
