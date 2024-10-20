@@ -14,10 +14,17 @@
       "supportsTablet": true,
       "bundleIdentifier": "dev.midz.lapse"
     },
+    // "android": {},
     "extra": {
       "eas": {
         "projectId": "03ea6164-9370-4884-9a63-49753eda2cb3"
       }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/03ea6164-9370-4884-9a63-49753eda2cb3"
     }
   }
 }
