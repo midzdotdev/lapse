@@ -1,0 +1,52 @@
+{
+  "configVersion": 0,
+  "apple": {
+    "version": "1.0",
+    "release": {
+      "automaticRelease": false
+    },
+    "info": {
+      "en-GB": {
+        "title": "Lapse: Focus Timer",
+        "subtitle": "Focus on what matters",
+        "description": "Lapse is a simple timer app that helps you focus on what matters.\n\nWhether you're a master procrastinator or overly engrossed in your tasks, Lapse helps you to regain perspective on your valuable time.",
+        "keywords": [
+          "timer",
+          "time",
+          "lapse",
+          "focus",
+          "productivity",
+          "procrastination",
+          "mindfulness"
+        ],
+        "privacyPolicyUrl": "https://github.com/midzdotdev/lapse/blob/main/privacy-policy.md"
+      }
+    },
+    "categories": ["PRODUCTIVITY", "UTILITIES"],
+    "advisory": {
+      "alcoholTobaccoOrDrugUseOrReferences": "NONE",
+      "contests": "NONE",
+      "gamblingSimulated": "NONE",
+      "horrorOrFearThemes": "NONE",
+      "matureOrSuggestiveThemes": "NONE",
+      "medicalOrTreatmentInformation": "NONE",
+      "profanityOrCrudeHumor": "NONE",
+      "sexualContentGraphicAndNudity": "NONE",
+      "sexualContentOrNudity": "NONE",
+      "violenceCartoonOrFantasy": "NONE",
+      "violenceRealistic": "NONE",
+      "violenceRealisticProlongedGraphicOrSadistic": "NONE",
+      "gambling": false,
+      "unrestrictedWebAccess": false,
+      "kidsAgeBand": null,
+      "seventeenPlus": false
+    },
+    "review": {
+      "firstName": "James",
+      "lastName": "Middleton",
+      "email": "james@midz.dev",
+      "phone": "+447512253451",
+      "demoRequired": false
+    }
+  }
+}
