@@ -12,7 +12,10 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "dev.midz.lapse"
+      "bundleIdentifier": "dev.midz.lapse",
+      "config": {
+        "usesNonExemptEncryption": false
+      }
     },
     // "android": {},
     "extra": {
