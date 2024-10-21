@@ -5,10 +5,10 @@
     "slug": "lapse",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "../assets/generated/icon.png",
+    "icon": "icon.png",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "../assets/generated/icon.png",
+      "image": "icon.png",
       "backgroundColor": "#000000"
     },
     "ios": {
