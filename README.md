@@ -1,4 +1,4 @@
-<img src="./assets/icon.png" style="height: 100px" />
+<img src="./assets/generated/icon.png" style="height: 100px" />
 
 # Lapse
 
