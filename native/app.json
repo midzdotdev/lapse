@@ -1,13 +1,14 @@
 {
   "expo": {
     "name": "Lapse",
+    "scheme": "lapse",
     "slug": "lapse",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "../assets/generated/icon.png",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/icon.png",
+      "image": "../assets/generated/icon.png",
       "backgroundColor": "#000000"
     },
     "ios": {

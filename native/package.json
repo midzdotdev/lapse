@@ -1,0 +1,30 @@
+{
+  "private": true,
+  "name": "native",
+  "main": "./AppEntry.ts",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "web": "expo start --web"
+  },
+  "overrides": {
+    "babel-plugin-react-compiler": "0.0.0-experimental-734b737-20241003"
+  },
+  "dependencies": {
+    "@react-native-async-storage/async-storage": "1.23.1",
+    "expo": "~51.0.38",
+    "expo-status-bar": "~1.12.1",
+    "expo-updates": "~0.25.27",
+    "jotai": "^2.10.0",
+    "react": "18.2.0",
+    "react-native": "0.74.5",
+    "react-native-reanimated": "~3.10.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.0",
+    "@pnpm/find-workspace-dir": "^7.0.2",
+    "@types/react": "~18.2.45",
+    "typescript": "~5.3.3"
+  }
+}
