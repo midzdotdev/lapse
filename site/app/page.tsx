@@ -16,7 +16,7 @@ export default function Home() {
 
         <h1 className="my-3 text-7xl font-black tracking-tight">Lapse</h1>
 
-        <p className="my-3 text-3xl font-bold tracking-tight">
+        <p className="my-3 text-center text-3xl font-bold tracking-tight">
           Gain perspective on your time
         </p>
 
