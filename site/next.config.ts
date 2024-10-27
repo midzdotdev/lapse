@@ -1,3 +1,3 @@
-import type { NextConfig } from "next";
+import { withContentlayer } from "next-contentlayer";
 
-export default {} satisfies NextConfig;
+export default withContentlayer({});

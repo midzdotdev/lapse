@@ -5,32 +5,36 @@ import { FaGithub } from "react-icons/fa6";
 
 export default function Home() {
   return (
-    <main>
-      <section className="flex min-h-screen flex-col items-center justify-center">
+    <main className="flex min-h-screen flex-col">
+      <section className="flex flex-1 flex-col items-center justify-center space-y-5">
         <Image
           src={IconImage}
           alt="Lapse Icon"
-          className="my-5 rounded-[20%] border border-border bg-black shadow-lg shadow-primary/15"
+          className="rounded-[20%] border border-border bg-black shadow-lg shadow-primary/15"
           priority
         />
 
-        <h1 className="my-3 text-7xl font-black tracking-tight">Lapse</h1>
+        <h1 className="text-7xl font-black tracking-tight">Lapse</h1>
 
-        <p className="my-3 text-center text-3xl font-bold tracking-tight">
+        <p className="text-center text-3xl font-bold tracking-tight">
           Gain perspective on your time
         </p>
 
-        <p className="my-1 text-muted-foreground">Coming to App Stores soon</p>
+        <p className="text-muted-foreground">Coming to App Stores soon</p>
 
-        <div className="space-4 my-8 flex flex-row">
-          <Link
-            href="https://github.com/midzdotdev/lapse"
-            className="flex flex-row items-center space-x-2 rounded-full border-2 pr-3"
-          >
-            <FaGithub className="size-8 rounded-full" />
-            <span className="font-mono font-bold">/midzdotdev/lapse</span>
-          </Link>
-        </div>
+        <Link
+          href="https://github.com/midzdotdev/lapse"
+          aria-label="View Lapse on GitHub"
+          className="flex flex-row rounded-full p-1 outline outline-0 transition-all hover:outline-2"
+        >
+          <FaGithub className="size-8" />
+        </Link>
+      </section>
+
+      <section className="my-3 flex flex-row justify-center space-x-1 px-3">
+        <Link href="/privacy-policy" className="text-secondary-foreground">
+          Privacy Policy
+        </Link>
       </section>
     </main>
   );
