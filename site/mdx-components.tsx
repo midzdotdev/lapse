@@ -1,6 +1,35 @@
 import { cn } from "@/lib/utils";
 import type { MDXComponents } from "mdx/types";
 import Image from "next/image";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "./components/ui/accordion";
+
+const CollapseGroup = ({ children }: { children: React.ReactNode }) => (
+  <Accordion type="single" collapsible>
+    {children}
+  </Accordion>
+);
+
+const CollapseItem = ({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) => {
+  return (
+    <AccordionItem value={title}>
+      <AccordionTrigger className="text-lg font-semibold">
+        {title}
+      </AccordionTrigger>
+      <AccordionContent>{children}</AccordionContent>
+    </AccordionItem>
+  );
+};
 
 const defaultComponents: MDXComponents = {
   h1: ({ className, ...props }) => (
@@ -134,14 +163,16 @@ const defaultComponents: MDXComponents = {
       {...props}
     />
   ),
+  code: ({ className, ...props }) => (
+    <code
+      className={cn("rounded-sm bg-muted px-1 font-mono text-sm", className)}
+      {...props}
+    />
+  ),
   Image,
+  CollapseGroup,
+  CollapseItem,
 };
-
-// export function useMDXComponents(components: MDXComponents): MDXComponents {
-//   return {
-//     ...components,
-//   };
-// }
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {

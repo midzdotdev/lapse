@@ -31,13 +31,19 @@ export default function Home() {
         </Link>
       </section>
 
-      <section className="container my-3 flex flex-row justify-center space-x-1 px-3">
-        <Link
-          href="/privacy-policy"
-          className="rounded-lg px-3 py-1 text-secondary-foreground outline outline-0 outline-ring/0 transition-all hover:outline-2 hover:outline-ring/100"
-        >
-          Privacy Policy
-        </Link>
+      <section className="container my-3 flex flex-row justify-center gap-3 px-3">
+        {[
+          { text: "Privacy Policy", href: "/privacy-policy" },
+          { text: "Support", href: "/support" },
+        ].map(({ text, href }) => (
+          <Link
+            key={href}
+            href={href}
+            className="rounded-lg px-3 py-1 text-accent-foreground outline outline-0 outline-ring/0 transition-all hover:outline-2 hover:outline-ring/100"
+          >
+            {text}
+          </Link>
+        ))}
       </section>
     </main>
   );

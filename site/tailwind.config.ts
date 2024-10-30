@@ -2,7 +2,11 @@ import type { Config } from "tailwindcss";
 import TailwindCssAnimate from "tailwindcss-animate";
 
 export default {
-  darkMode: "class",
+  darkMode: ["class", "class"],
+  future: {
+    // uses @media (hover: hover) for all `hover:` prefixed utils
+    hoverOnlyWhenSupported: true,
+  },
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -22,6 +26,8 @@ export default {
     extend: {
       animation: {
         rise: "rise 1s forwards ease",
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
       },
       colors: {
         background: "hsl(var(--background))",
@@ -69,6 +75,24 @@ export default {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      keyframes: {
+        "accordion-down": {
+          from: {
+            height: "0",
+          },
+          to: {
+            height: "var(--radix-accordion-content-height)",
+          },
+        },
+        "accordion-up": {
+          from: {
+            height: "var(--radix-accordion-content-height)",
+          },
+          to: {
+            height: "0",
+          },
+        },
       },
     },
   },

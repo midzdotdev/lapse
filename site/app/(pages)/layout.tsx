@@ -9,7 +9,7 @@ export default function PagesLayout({
 }) {
   return (
     <>
-      <header className="sticky top-0 bg-primary-foreground/30 py-4 shadow-md backdrop-blur-md lg:py-8">
+      <header className="sticky top-0 bg-primary-foreground/50 py-4 shadow-md backdrop-blur-md lg:py-8">
         <Link
           className="container flex max-w-3xl flex-row items-center space-x-2 lg:space-x-4"
           href="/"
