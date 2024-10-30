@@ -6,7 +6,7 @@ import { FaGithub } from "react-icons/fa6";
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col">
-      <section className="flex flex-1 flex-col items-center justify-center space-y-5">
+      <section className="container flex flex-1 flex-col items-center justify-center space-y-5">
         <Image
           src={IconImage}
           alt="Lapse Icon"
@@ -31,8 +31,11 @@ export default function Home() {
         </Link>
       </section>
 
-      <section className="my-3 flex flex-row justify-center space-x-1 px-3">
-        <Link href="/privacy-policy" className="text-secondary-foreground">
+      <section className="container my-3 flex flex-row justify-center space-x-1 px-3">
+        <Link
+          href="/privacy-policy"
+          className="rounded-lg px-2 py-0.5 text-secondary-foreground outline outline-0 outline-ring/0 transition-all hover:outline-2 hover:outline-ring/100"
+        >
           Privacy Policy
         </Link>
       </section>

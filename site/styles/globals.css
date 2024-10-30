@@ -67,3 +67,11 @@
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes rise {
+  from {
+    scale: 0.9;
+    opacity: 0;
+    filter: blur(1rem);
+  }
+}

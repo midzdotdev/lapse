@@ -1,17 +1,28 @@
 import type { Config } from "tailwindcss";
+import TailwindCssAnimate from "tailwindcss-animate";
 
 export default {
   darkMode: "class",
   content: [
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./mdx-components.tsx",
   ],
   theme: {
     container: {
       center: true,
-      padding: "3rem",
+      padding: {
+        DEFAULT: "1rem",
+        sm: "2rem",
+        lg: "4rem",
+        xl: "5rem",
+        "2xl": "6rem",
+      },
     },
     extend: {
+      animation: {
+        rise: "rise 1s forwards ease",
+      },
       colors: {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
@@ -61,5 +72,5 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [TailwindCssAnimate],
 } satisfies Config;

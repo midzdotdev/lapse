@@ -1,16 +1,8 @@
-"use client";
-
-import { type getMDXComponent, useMDXComponent } from "next-contentlayer/hooks";
-import Image from "next/image";
-import * as React from "react";
-
 import { cn } from "@/lib/utils";
+import type { MDXComponents } from "mdx/types";
+import Image from "next/image";
 
-type MDXComponents = React.ComponentProps<
-  ReturnType<typeof getMDXComponent>
->["components"];
-
-const components = {
+const defaultComponents: MDXComponents = {
   h1: ({ className, ...props }) => (
     <h1
       className={cn(
@@ -143,18 +135,17 @@ const components = {
     />
   ),
   Image,
-} satisfies MDXComponents;
+};
 
-interface MdxProps {
-  code: string;
-}
+// export function useMDXComponents(components: MDXComponents): MDXComponents {
+//   return {
+//     ...components,
+//   };
+// }
 
-export function Mdx({ code }: MdxProps) {
-  const Component = useMDXComponent(code);
-
-  return (
-    <div className="mdx">
-      <Component components={components} />
-    </div>
-  );
+export function useMDXComponents(components: MDXComponents): MDXComponents {
+  return {
+    ...defaultComponents,
+    ...components,
+  };
 }
