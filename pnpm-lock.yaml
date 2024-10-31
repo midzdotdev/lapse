@@ -23,9 +23,6 @@ importers:
       expo:
         specifier: ~51.0.38
         version: 51.0.38(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))
-      expo-modules-autolinking:
-        specifier: ~1.11.0
-        version: 1.11.3
       expo-status-bar:
         specifier: ~1.12.1
         version: 1.12.1
