@@ -5,11 +5,12 @@
     "release": {
       "automaticRelease": false
     },
+    "copyright": "© 2024 James Middleton",
     "info": {
       "en-GB": {
-        "title": "Lapse: Focus Timer",
+        "title": "Lapse: Time in Perspective",
         "subtitle": "Find your focus",
-        "description": "Lapse is a simple timer app that helps you focus on what matters.\n\nWhether you're a master procrastinator or overly engrossed in your tasks, Lapse helps you to regain perspective on your valuable time.",
+        "description": "Lapse is a simple timer to help you focus on what matters.\n\nWhether you're a master procrastinator or overly engrossed in your tasks, Lapse helps you to regain perspective on your valuable time.\n\nThis app is open source and available under the Open Software License 3.0. For more information, please visit https://github.com/midzdotdev/lapse.",
         "keywords": [
           "timer",
           "time",
@@ -19,7 +20,9 @@
           "procrastination",
           "mindfulness"
         ],
-        "privacyPolicyUrl": "https://github.com/midzdotdev/lapse/blob/main/privacy-policy.md"
+        "privacyPolicyUrl": "https://lapse.midz.dev/privacy-policy",
+        "supportUrl": "https://lapse.midz.dev/support",
+        "marketingUrl": "https://lapse.midz.dev"
       }
     },
     "categories": ["PRODUCTIVITY", "UTILITIES"],
