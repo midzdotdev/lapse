@@ -12,7 +12,6 @@
       "backgroundColor": "#000000"
     },
     "ios": {
-      "supportsTablet": true,
       "bundleIdentifier": "dev.midz.lapse",
       "config": {
         "usesNonExemptEncryption": false
